@@ -1,0 +1,620 @@
+/*
+Javascript-video-scrubber Demo
+Created by Gary Hepting and the Dev Team at Emerge Interactive
+Fork, follow and watch on Github at https://github.com/ghepting/javascript-video-scrubber
+Visit Emerge Interctive at http://emergeinteractive.com/
+*/
+
+
+body {
+font-family: 'Lora', serif;	color:#fff;
+	margin:0;
+	overflow:auto;
+	height:90vh;
+}
+
+
+
+h1, h2, h3 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 3vmax ;
+	line-height: 1.5;
+	font-weight: 400;
+	text-align:center;
+	letter-spacing:10px;
+		    text-transform: uppercase;
+
+	
+}
+
+p {
+	letter-spacing:inherit;
+font-size: 1.5vmax;  line-height: 32px; margin: 0 0 24px; 	font-weight: 300;
+	
+	padding: 15%;
+	  text-wrap: balance;
+	    padding-top: 4%;
+		    padding-bottom: 4%;
+	background:rgba(51,38,155,0.4);
+
+
+}
+
+
+p2 {
+	font-size:2em;
+	text-align:center;
+font-family: 'Montserrat', sans-serif;	font-size: 5vmax ;
+	line-height: 1.5;
+	font-weight: 400;
+	text-align:center;
+	width:100%;
+	height:auto; 
+	letter-spacing:10px;
+		    text-transform: uppercase;
+			color: #fff; background: #df4e4e;  
+			padding-left:5%; 
+}
+
+
+div.article {
+	border-radius:0;
+	padding:0;
+	background:rgba(107,108,197,0.6);
+}
+
+
+img#video {
+	position:fixed;
+	z-index:1;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+#overlay {
+	position:fixed;
+	z-index:2;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url('./images/grid_overlay.png');
+	
+}
+#content {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	padding: 0;
+	margin:0;
+
+}
+#footer {
+	text-align:center;
+}
+#footer h1 a {
+	border:none;
+}
+#footer h1 a img {
+	position:relative;
+	top:12px;
+}
+
+.projectlogo{ 
+max-width: 100%;
+height: auto !important;
+
+}
+	
+	
+	.projectvideo{     
+	text-align: center; margin: 0; padding: 20%; padding-top:0;
+	    padding-bottom: 0;
+
+	}
+	
+	
+	
+.projectcontent{width:100%;
+	font-size: 2vmax;
+	font-weight: 300;
+}
+
+.projectcontent p {
+	font-size: 2em;
+	font-weight: 300;}
+	
+	.createcontent p {background-color:transparent;} 	
+
+#photos {
+   /* Prevent vertical gaps */
+   line-height: 0;
+   -webkit-column-count: 4;
+   -webkit-column-gap:   0px;
+   -moz-column-count:    4;
+   -moz-column-gap:      0px;
+   column-count:         4;
+   column-gap:           0px;
+margin-bottom:10%;
+} 
+#photos img {
+  /* Just in case there are inline attributes */
+  width: 100% !important;
+  height: auto !important;
+  opacity:.7;
+}
+
+
+@media (max-width: 1200px) {
+  #photos {
+  -moz-column-count:    4;
+  -webkit-column-count: 4;
+  column-count:         4;
+  }
+}
+@media (max-width: 1000px) {
+  #photos {
+  -moz-column-count:    3;
+  -webkit-column-count: 3;
+  column-count:         3;
+  }
+}
+@media (max-width: 800px) {
+  #photos {
+  -moz-column-count:    2;
+  -webkit-column-count: 2;
+  column-count:         2;
+  }
+}
+@media (max-width: 400px) {
+  #photos {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
+
+
+	
+	
+	.projectcontent{width:100%;}
+	.cbp-so-scroller {
+	margin-top: 0px;
+	overflow: hidden;
+}
+
+.cbp-so-section {
+	margin-bottom: 2em;
+}
+
+/* Clear floats of children */
+.cbp-so-section:before,
+.cbp-so-section:after {
+	content: " ";
+	display: table;
+}
+
+.cbp-so-section:after {
+	clear: both;
+}
+
+/* Text styling */
+.cbp-so-section h2 {
+	font-size: 5em;
+	font-weight: 300;
+	line-height: 1;
+}
+
+.cbp-so-section p {
+	font-size: 2em;
+	font-weight: 300;
+	margin-bottom: 368px;
+}
+
+/* Sides */
+.cbp-so-side {
+	width: 90%;
+	text-align:justify;
+	line-height:2em;
+	margin-bottom: 1000px;
+	padding: 2em 4%;
+	overflow: hidden;
+	min-height: 12em;
+	-webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
+	-moz-transition: -moz-transform 0.5s, opacity 0.5s;
+	transition: transform 0.5s, opacity 0.5s;
+}
+
+/* Clear floats of children */
+.cbp-so-side:before,
+.cbp-so-side:after {
+	content: " ";
+	display: table;
+}
+
+.cbp-so-side:after {
+	clear: both;
+}
+
+.cbp-so-side-right {
+	text-align: left;
+}
+
+.cbp-so-side-left {
+	text-align: right;
+}
+
+.cbp-so-side-right img {
+	float: left;
+}
+
+.cbp-so-side-left img {
+	float: right;
+}
+
+/* Initial state (hidden or anything else) */
+.cbp-so-init .cbp-so-side {
+	opacity: 0;
+}
+
+.cbp-so-init .cbp-so-side-left {
+	-webkit-transform: translateX(-80px);
+	-moz-transform: translateX(-80px);
+	transform: translateX(-80px);
+}
+
+.cbp-so-init .cbp-so-side-right {
+	-webkit-transform: translateX(80px);
+	-moz-transform: translateX(80px);
+	transform: translateX(80px);
+}
+
+/* Animated state */
+/* add you final states (transition) or your effects (animations) for each side */
+.cbp-so-section.cbp-so-animate .cbp-so-side-left,
+.cbp-so-section.cbp-so-animate .cbp-so-side-right {
+	-webkit-transform: translateX(0px);
+	-moz-transform: translateX(0px);
+	transform: translateX(0px);
+	opacity: 1;
+}
+
+/* For example, add a delay for the right side:
+.cbp-so-section.cbp-so-animate .cbp-so-side-right {
+	-webkit-transition-delay: 0.2s;
+	-moz-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+*/
+
+/* Example media queries */
+
+@media screen and (max-width: 73.5em) {
+	.cbp-so-scroller {
+		font-size: 65%;
+	}
+
+	.cbp-so-section h2 {
+		margin: 0;
+	}
+
+	.cbp-so-side img {
+		max-width: 100%;
+	}
+}
+
+@media screen and (max-width: 41.125em) {
+	.cbp-so-side {
+		float: none;
+		width: 100%;
+	}
+
+	.cbp-so-side img {
+		max-width: 100%;
+	}
+}
+
+
+@media only screen and (max-width: 520px) {
+
+	
+}
+
+nav {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background: #000;
+		color:#94949;
+
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+nav li {
+	display: inline-block;
+	padding: 0;
+		    vertical-align: text-top;
+
+}
+
+nav li a {
+	text-transform: uppercase;
+	color:#94949;
+}
+
+
+nav2 {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	margin-top:-50px;
+	background: #000;
+	font-family: 'Montserrat', sans-serif;
+		
+
+
+}
+
+nav2 li {
+	display: inline-block;
+	padding: 0;
+	color:#bbbbbb;
+	font-style: normal;
+    font-family: monospace;
+    text-transform: uppercase;
+	 vertical-align: text-top;
+}
+
+nav2 li a {
+	text-transform: uppercase;
+}
+.op{opacity:.8;}
+
+.fixed {
+	position: fixed; 
+	top: 0; 
+	height: 50px; 
+	
+	background-color:#000;
+		color:#ababab;
+z-index: 8;
+	
+}
+
+.fixed2 {
+	position: fixed; 
+	margin-top: 0; 
+	height: 50px; 
+	background-color:#000;
+z-index: 8;
+	width:100%;
+}
+
+nav.fixed ul {
+    margin-top: 0;
+	    height: 55px;
+
+}
+
+
+	
+a, a:link, a:visited {
+	color:#ababab;
+	text-decoration:none;
+		text-shadow: 0;
+
+}
+a:hover, a:focus, a:active {
+	color:#ababab;
+	text-decoration:none;
+		text-shadow: 0;
+
+}
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+
+div.links ul {
+    font-size: 2em;
+    word-spacing: 30px;
+    text-align: center;
+    text-decoration: none;
+	    padding-left: 0;
+		display: inline-block;
+			padding-right:2%;
+
+}
+
+ ul li a:hover {
+    background-color: #ff00de;
+    color: #000;
+}
+
+ul li a {
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+.hide {
+  display: none;
+}
+
+#lower {
+    width: 100%;
+	margin:0;
+    position: absolute;
+    bottom: 0;
+}
+
+#bar {
+    padding: 0;
+	text-align:center;
+	width:100%;
+	bottom:50px;
+	position:absolute;
+	background-color:#000;
+	text-align:center;
+	padding-right:2%;
+}
+
+.shit ul {position: relative;
+top: -5px;
+list-style-type: none;
+font-family: 'Patua One', cursive;
+padding-left: 10px;
+}
+
+.shit ul li {
+margin-bottom: 3%;
+clear: both;
+}
+#panel {
+    display: none;
+	    background-color: #000;
+		opacity:.8;
+
+    padding: 0;
+	
+}
+
+
+
+#toggle {
+font-family: 'Monda', sans-serif;    font-size: 2em;
+    text-transform: uppercase;
+    color: #ffffff;
+	top:-50px;
+}
+
+
+#toggle:hover {
+font-family: 'Monda', sans-serif;    font-size: 2em;
+    text-transform: uppercase;
+    color: #ff00de;
+	cursor:pointer;
+}
+
+url('https://unsplash.imgix.net/41/yEWFnFQRqfmY9l9efJ6g_Snap01-web.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=format&s=7580de2dc3b3821f0dc1c97f2d60fe7c');
+}
+header{
+	width:100%; 
+	background:#1d1f20; 
+	height:50px; 
+	line-height:50px;
+	  position:absolute;
+top:0;
+right:0;
+}
+.hamburger{
+  background:none;
+position:fixed;  top:0;
+  right:0;
+  line-height:45px;
+  padding:0px 25px 0px 25px;
+  color:#fff;
+  border:0;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:10000000000000;
+}
+.hamburger:hover{color: #ff00de;}
+ .cross:hover{color: #ff00de;
+}
+.cross{
+  background:none;
+  position:fixed;
+  top:0px;
+  right:0;
+  padding:0px 25px 0px 25px;
+  color:#fff;
+  border:0;
+  font-size:4em;
+  line-height:65px;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:10000000000000;
+}
+.menu{z-index:1000000; position:fixed; top:0; font-family: 'Monda', sans-serif;    font-size: 2em;
+ left:0;font-weight:bold; width:100vw; height:100vh; background:#131313;  text-align:center;}
+.menu ul {margin: 0; padding: 0; list-style-type: none; list-style-image: none;}
+.menu li {display: block;   border-bottom:#1d1f20 1px solid; padding:5vh;}
+.menu li:hover{display: block;  color:#000;      background-color: #ff00de;
+ border-bottom:#1d1f20 1px solid;}
+.menu ul li a { text-decoration:none;  margin: 0px; color:#fff;}
+.menu ul li a:hover {  color: #fff; text-decoration:none;}
+.menu a{text-decoration:none; color:white; height:10vh;}
+.menu a:hover{text-decoration:none; color:white;}
+
+.glyphicon-home{
+  color:white; 
+  font-size:1.5em; 
+  margin-top:5px; 
+  margin:0 auto;
+}
+
+
+.mouse {
+  width: 62px;
+  position: fixed;
+  height: 62px;
+  border-radius: 15px;
+  border: 0px solid #888;
+  bottom: 40px;
+  left: 50%;
+  margin-left: -32px;
+}
+
+
+
+.scroll {
+  display: block;
+  margin: 20px auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 4px;
+  background: #ff00de;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-name: scroll;
+  animation-name: scroll;
+}
+
+@keyframes scroll {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    -ms-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+} 
+
+
+@-webkit-keyframes scroll {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: translateY(20px);
+    transform: translateY(20px);
+  }
+}
